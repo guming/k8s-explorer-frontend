@@ -1,7 +1,8 @@
 <script setup>
 import { DocumentDuplicateIcon, EyeIcon, WrenchScrewdriverIcon } from "@heroicons/vue/24/outline";
 import { computed, onMounted, reactive, ref, watch } from "vue";
-
+import { useDarkModeStore } from '@/stores/darkMode.js'
+import { gradientBgPurplePink, gradientBgDark, gradientBgPinkRed } from '@/colors.js'
 import { useAppStore } from "../stores";
 
 import KubeExplorer from "./KubeExplorer.vue";
@@ -117,15 +118,23 @@ onMounted(() => {
     }
   });
 });
+
+const colorClass = computed(() => {
+  if (useDarkModeStore().isEnabled) {
+    return gradientBgDark
+  }
+
+  return ''
+})
 </script>
 
 <template>
   <div
     ref="containerRef"
     class="bg-base-200 border-neutral-content border-r flex h-full relative"
-    :class="{
-      'transition-all duration-150 ease-in-out': !hResizing,
-    }"
+    :class="[{
+      'transition-all duration-150 ease-in-out': !hResizing
+    },colorClass]"
     :style="{
       'min-width': navbarWidth + (drawerOpen ? drawerMinWidth : 0) + 'px',
     }"
