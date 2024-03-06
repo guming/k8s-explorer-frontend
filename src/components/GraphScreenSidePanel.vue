@@ -2,7 +2,7 @@
 import { DocumentDuplicateIcon, EyeIcon, WrenchScrewdriverIcon } from "@heroicons/vue/24/outline";
 import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useDarkModeStore } from '@/stores/darkMode.js'
-import { gradientBgPurplePink, gradientBgDark, gradientBgPinkRed } from '@/colors.js'
+import { gradientBgDark } from '@/colors.js'
 import { useAppStore } from "../stores";
 
 import KubeExplorer from "./KubeExplorer.vue";
@@ -27,7 +27,7 @@ const sections = reactive({
   },
   watches: {
     open: false,
-    tooltip: "Resource watching (coming soon)",
+    tooltip: "Resource watching",
     icon: EyeIcon,
   },
   // requestBuilder: {
@@ -169,6 +169,7 @@ const colorClass = computed(() => {
     <div
       v-show="drawerOpen"
       class="flex grow h-full min-h-0"
+      :class="colorClass"
       :style="{
         'min-width': drawerMinWidth + 'px',
       }"

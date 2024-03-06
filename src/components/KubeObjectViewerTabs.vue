@@ -2,7 +2,8 @@
 import { computed, markRaw, reactive, type Component } from "vue";
 
 import type { KubeObject } from "../common/types";
-
+import { useDarkModeStore }  from '../stores/darkMode.js'
+import { gradientBgDark } from '../colors.js'
 import KubeObjectViewerEventsTab from "./KubeObjectViewerEventsTab.vue";
 import KubeObjectViewerManifestTab from "./KubeObjectViewerManifestTab.vue";
 import KubeObjectViewerPodInsightsTab from "./KubeObjectViewerPodInsightsTab.vue";
@@ -55,11 +56,18 @@ function toggleActive(tab: typeof tabs.value[0]) {
   });
   tab.active = true;
 }
+const colorClass = computed(() => {
+  if (useDarkModeStore().isEnabled) {
+    return gradientBgDark
+  }
+
+  return ''
+})
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <div class="-mb-px flex-nowrap shrink-0 tabs z-10">
+  <div class="flex flex-col" :class="colorClass">
+    <div class="-mb-px flex-nowrap shrink-0 tabs z-10" >
       <button
         v-for="t in tabs"
         :key="t.name"

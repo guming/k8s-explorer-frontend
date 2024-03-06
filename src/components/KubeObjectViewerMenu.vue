@@ -12,12 +12,12 @@ defineProps<{
 const appStore = useAppStore();
 
 const allMenuItems = [
-  {
-    name: "More actions to come...",
-    onClick: () => {},
-    icon: BeakerIcon,
-    disabled: () => false,
-  },
+  // {
+  //   name: "More actions to come...",
+  //   onClick: () => {},
+  //   icon: BeakerIcon,
+  //   disabled: () => false,
+  // },
   {
     name: "Close pane",
     divided: true,

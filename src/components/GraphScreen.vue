@@ -64,11 +64,7 @@ onUnmounted(() => {
             class="flex grow items-center justify-center select-none text-lg text-neutral-content"
           >
             <ul class="list-disc mx-[40px]">
-              <li>Use explorer on the left to pick a Kubernetes object.</li>
-              <li>Click on the graphed object to see its details and available actions.</li>
-              <li>Watch for changes in objects that you are interested in.</li>
-              <li>Automatically generate graphs of related objects via smart presets.</li>
-              <li>Use the built-in terminal to run commands in the cluster.</li>
+              <li>Welcome.</li>
             </ul>
           </div>
         </div>

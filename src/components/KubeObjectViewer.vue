@@ -4,6 +4,8 @@ import { computed, onMounted, onUnmounted } from "vue";
 import { useCleaner } from "../common/cleaner";
 import { type KubeObject } from "../common/types";
 import { useKubeDataStore } from "../stores";
+import { useDarkModeStore }  from '../stores/darkMode.js'
+import { gradientBgDark } from '../colors.js'
 
 import KubeObjectViewerActionBar from "./KubeObjectViewerActionBar.vue";
 import KubeObjectViewerMenu from "./KubeObjectViewerMenu.vue";
@@ -62,10 +64,18 @@ onMounted(async() => {
     cleaner.addCleanup(unwatch);
   }
 });
+
+const colorClass = computed(() => {
+  if (useDarkModeStore().isEnabled) {
+    return gradientBgDark
+  }
+
+  return ''
+})
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-2 h-full p-[5px]">
+  <div class="flex flex-col gap-y-2 h-full p-[5px]" :class="colorClass">
     <div class="pl-2 w-full">
       <div class="flex items-center justify-between">
         <a
@@ -101,5 +111,4 @@ onMounted(async() => {
   </div>
 </template>
 
-<style scoped>
-</style>
+

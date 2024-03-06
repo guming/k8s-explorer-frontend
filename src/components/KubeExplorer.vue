@@ -1,6 +1,9 @@
-<script lang="ts" setup>
+<script setup>
 import { QuestionMarkCircleIcon } from "@heroicons/vue/24/outline";
-import { onMounted } from "vue";
+import { onMounted,computed } from "vue";
+
+import { useDarkModeStore } from '@/stores/darkMode.js'
+import { gradientBgDark } from '@/colors.js'
 
 import {
   useAllExplorerStore,
@@ -56,14 +59,18 @@ onMounted(() => {
     }
   });
 });
+
+const colorClass = computed(() => {
+  if (useDarkModeStore().isEnabled) {
+    return gradientBgDark
+  }
+
+  return ''
+})
 </script>
 
 <template>
   <div class="flex flex-col">
-    <div class="!text-primary-content/70 px-[1.1rem] py-1 select-none shrink-0 text-sm uppercase">
-      Explorer
-    </div>
-
     <KubeExplorerExpandableItem
       :toggle="() => { quickExplorerStore.toggleTree(); quickExplorerStore.isTreeOpen && allExlorerStore.closeTree(); }"
       :is-open="quickExplorerStore.isTreeOpen"
@@ -74,7 +81,7 @@ onMounted(() => {
       <template #title>
         <div class="flex flex-col w-full">
           <div class="flex items-center">
-            <span class="font-bold text-sm uppercase">Quick access</span>
+            <span class="font-blod text-sm uppercase" >Quick access</span>
             <div
               class="tooltip tooltip-info tooltip-right z-[60]"
               data-tip="Use this section to access the most commonly used Kubernetes objects. Handy for quickly finding all your Deployments, Pods, Services, and the like."
@@ -321,11 +328,11 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 * {
   font-family: -apple-system, "system-ui", sans-serif;
   line-height: 24px;
 
   @apply text-primary-content;
 }
-</style>
+</style> -->
