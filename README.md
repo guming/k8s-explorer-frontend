@@ -8,8 +8,8 @@ k8s Explore 一个专为开发人员使用的K8s本地工具
 
 ### Demo
 
-![本地图片1](/blog/k8s1.gif)
+![本地图片1](/public/blog/k8s1.gif)
 
 再来
 
-![本地图片2](/blog/k8s2.gif)
+![本地图片2](/public/blog/k8s2.gif)
